@@ -1,0 +1,174 @@
+<!DOCTYPE html><html><head>
+      <title>Fang.</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+      <style>
+      :root {
+      color-scheme: light dark;
+      }
+
+      body {
+      margin: 2rem;
+      background: #fff;
+      color: #000;
+      }
+
+      .logo {
+      width: 100%;
+      max-width: 1000px;
+      display: block;
+      margin: 0 auto;
+      }
+
+      .main{
+      max-width:900px;
+      margin: 0 auto;
+      }
+
+      footer {
+      max-width:900px;
+      margin: 0 auto;
+      text-align: center;         
+      }
+
+      @media (prefers-color-scheme: dark) {
+      body {
+      background: #000;
+      color: #eee;
+      }
+      }
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script>
+<link rel="manifest" href="/manifest.json">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js', { type: 'module' })
+      .then(() => console.log('PWA Ready!'));
+  }
+</script>
+</head>
+<body>
+      <div class="main">            
+            <p>
+                  <picture>
+                  <source srcset="images/Fang._logo_white.svg" media="(prefers-color-scheme: dark)">
+                  <img class="logo" src="images/Fang._logo_black.svg" width="100%" alt="Fang.|昭和、平成、令和　東京都　物理法則を超えた力が在る社会にて">
+                  </picture>
+            </p>
+            <p>昭和、平成、令和</p>
+            <p>東京都</p>
+            <p>物理法則を超えた力が在る社会にて</p>
+            <h1 id="表現の警告">表現の警告</h1>
+            <ul>
+                  <li>R-18：成人向けの性的な表現を含みます。</li>
+                  <li>R-18G：性的な表現に加え、グロテスクな描写や倫理的に不安定な状況の描写を含みます。</li>
+                  <li>†：作成者が読んだり書いたりした時、体調を崩した作品です。</li>
+            </ul>
+            <h1 id="世界">世界</h1>
+            <ul>
+                  <li><a href="https://www.pixiv.net/tags/%E6%8E%9F%E7%84%A1%E3%81%8D%E3%81%93%E3%81%AE%E4%B8%96%E7%95%8C%E3%81%A7/artworks">掟無きこの世界で</a></li>
+                  <li><a href="https://www.pixiv.net/user/4268628/series/28430">彼のヒト</a></li>
+                  <li><a href="https://www.pixiv.net/novel/show.php?id=27256358">FANG</a></li>
+            </ul>
+            <h1 id="登場人物">登場人物</h1>
+            <ul>
+                  <li><a href="https://www.pixiv.net/tags/%E5%BB%B6%E9%87%91%E8%8B%B1%E4%B8%80/artworks">延金 英一</a>（1955年生まれ）</li>
+                  <li><a href="https://www.pixiv.net/tags/%E8%91%9B%E5%9F%8E%E6%AD%A3%E8%A6%AA/artworks">葛城 正親</a>（1970年生まれ）</li>
+                  <li><a href="https://www.pixiv.net/tags/%E9%A2%A8%E9%96%93%E7%AB%9C%E4%B9%9F/artworks">風間 竜也</a>（不明）</li>
+                  <li><a href="https://www.pixiv.net/tags/%E6%8C%87%E5%AE%BF%E6%A5%93/artworks">指宿 楓</a>（不明）</li>
+                  <li><a href="https://www.pixiv.net/tags/%E5%9B%9B%E6%96%B9%E6%A4%BF/artworks">四方 椿</a>（1992年生まれ）</li>
+                  <li><a href="https://www.pixiv.net/tags/%E7%AF%A0%E5%8E%9F%E5%A0%85/artworks">篠原 堅</a>（1994年生まれ）</li>
+                  <li><a href="https://www.pixiv.net/tags/%E6%88%B8%E6%AC%A1%E4%BF%A1%E9%95%B7/artworks">戸次 信長</a>（1995年生まれ）</li>
+                  <li><a href="https://www.pixiv.net/tags/%E9%B3%A5%E6%9C%AC%E6%98%A5%E6%A8%B9/artworks">鳥本 春樹</a>（1996年生まれ）</li>
+                  <li><a href="https://www.pixiv.net/tags/%E5%9B%9B%E6%96%B9%E5%84%AA%E4%B9%9F/artworks">四方 優也</a>（1996年生まれ）</li>
+                  <li><a href="https://www.pixiv.net/tags/%E6%9C%AC%E7%94%B0%E5%8D%83%E5%92%8C/artworks">本田 千和</a>（1998年生まれ）</li>
+                  <li><a href="https://www.pixiv.net/tags/%E6%A8%AA%E5%B3%B6%20%E6%8E%9F%E7%84%A1%E3%81%8D%E3%81%93%E3%81%AE%E4%B8%96%E7%95%8C%E3%81%A7/artworks">横島</a> （不明）</li>
+            </ul>
+            <h1 id="時系列">時系列</h1>
+            <div id="timeline"></div>
+            <ul>
+                  <li><a href="https://www.pixiv.net/novel/show.php?id=27257343">読心能力者 葛城正親に適した遊具</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/140930064">これが好き</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/89619569">いつでも抱いてやるからよ</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/90995050">Today's shopper</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/92962893">Da heart stopped beating</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/89384286">履歴(1/2)</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/93030996">履歴(2/2)</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/88146959">OPEN da DOOR</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/141151216">2016年5月5日8:30頃：ロッカー室にて</a></li>
+                  <li><a href="https://www.pixiv.net/novel/show.php?id=27272604">2016年5月5日 FANGの共有Gmailアカウントの下書きに保存されたテキスト</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/88147005">BIG DOG's Digging Life</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/88147068">DON'T ENTER da TERRITORY:1/3†</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/88147100">DON'T ENTER da TERRITORY:2/3†</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/88147179">DON'T ENTER da TERRITORY:3/3†</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/100456638">The line of DUTY†</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/109761297">Trapped Teleporter†</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/133391478">[R-18G]Tiger's claw</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/133917980">Runnin'</a></li>
+                  <li><a href="https://www.pixiv.net/novel/show.php?id=27160759">篠原 堅に助けられた四方 椿</a></li>
+            </ul>
+            FANG
+            <ul>
+                  <li><a href="https://www.pixiv.net/novel/show.php?id=27149673">[R-18G]誘いの言葉:結合の役割選択およびその意思表示について</a></li>
+                  <li><a href="https://www.pixiv.net/novel/show.php?id=27161148">[R-18]赦しのことば</a></li>
+                  <li><a href="https://www.pixiv.net/novel/show.php?id=27193102">[R-18]空洞の疼き</a></li>
+                  <li><a href="https://www.pixiv.net/novel/show.php?id=27488933">隠れたセカイ†</a></li>
+                  <li><a href="https://www.pixiv.net/novel/show.php?id=27256185">タチ不足</a></li>
+            </ul>
+            SHADOW
+            <ul>
+                  <li><a href="https://www.pixiv.net/novel/show.php?id=27291424">触るな</a></li>
+                  <li><a href="https://www.pixiv.net/novel/show.php?id=27291506">メタデータ</a></li>
+            </ul>
+            SKIN
+            <ul>
+                  <li><a href="https://www.pixiv.net/novel/show.php?id=27197362">衝突点</a></li>
+                  <li><a href="https://www.pixiv.net/artworks/141231936">能力に囚われた2人</a></li>
+            </ul>
+            <h1 id="設定資料">設定資料</h1>
+            <ul>
+                  <li><a href="https://www.pixiv.net/tags/%E8%A8%AD%E5%AE%9A%E8%B3%87%E6%96%99%20%E5%BB%B6%E9%87%91%E8%8B%B1%E4%B8%80/novels?s_mode=s_tag">延金 英一</a></li>
+                  <li><a href="https://www.pixiv.net/tags/%E8%A8%AD%E5%AE%9A%E8%B3%87%E6%96%99%20%E8%91%9B%E5%9F%8E%E6%AD%A3%E8%A6%AA/novels?s_mode=s_tag">葛城 正親</a></li>
+                  <li>風間 竜也</li>
+                  <li>指宿 楓</li>
+                  <li><a href="https://www.pixiv.net/tags/%E8%A8%AD%E5%AE%9A%E8%B3%87%E6%96%99%20%E5%9B%9B%E6%96%B9%E6%A4%BF/novels?s_mode=s_tag">四方 椿</a></li>
+                  <li><a href="https://www.pixiv.net/tags/%E8%A8%AD%E5%AE%9A%E8%B3%87%E6%96%99%20%E7%AF%A0%E5%8E%9F%E5%A0%85/novels?s_mode=s_tag">篠原 堅</a></li>
+                  <li><a href="https://www.pixiv.net/tags/%E8%A8%AD%E5%AE%9A%E8%B3%87%E6%96%99%20%E6%88%B8%E6%AC%A1%E4%BF%A1%E9%95%B7/novels?s_mode=s_tag">戸次 信長</a></li>
+                  <li><a href="https://www.pixiv.net/tags/%E8%A8%AD%E5%AE%9A%E8%B3%87%E6%96%99%20%E9%B3%A5%E6%9C%AC%E6%98%A5%E6%A8%B9/novels?s_mode=s_tag">鳥本 春樹</a></li>
+                  <li><a href="https://www.pixiv.net/tags/%E8%A8%AD%E5%AE%9A%E8%B3%87%E6%96%99%20%E5%9B%9B%E6%96%B9%E5%84%AA%E4%B9%9F/novels?s_mode=s_tag">四方 優也</a></li>
+                  <li><a href="https://www.pixiv.net/tags/%E8%A8%AD%E5%AE%9A%E8%B3%87%E6%96%99%20%E6%9C%AC%E7%94%B0%E5%8D%83%E5%92%8C/novels?s_mode=s_tag">本田 千和</a></li>
+                  <li>横島</li>
+            </ul>
+            <h1 id="コンセプトアート">コンセプトアート</h1>
+            <ul>
+                  <li><a href="https://www.pixiv.net/tags/%E5%BD%BC%E3%81%AE%E3%83%92%E3%83%88%20%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%97%E3%83%88%E3%82%A2%E3%83%BC%E3%83%88%20ink./artworks?s_mode=s_tag">彼のヒト</a></li>
+                  <li><a href="https://www.pixiv.net/tags/FANG%20ink.%20%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%97%E3%83%88%E3%82%A2%E3%83%BC%E3%83%88/artworks?s_mode=s_tag">FANG</a></li>
+            </ul>
+            <h1 id="クロスオーバー">クロスオーバー</h1>
+            <ul>
+                  <li><a href="https://www.pixiv.net/novel/show.php?id=27234152">彼のヒト×FANG:戸次信長編「矛盾」</a></li>
+            </ul>
+            <h1 id="ライセンス">ライセンス</h1>
+            <p>本サイトにリンクを掲載した作品は<a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons 表示—非営利（CC BY-NC）</a>に基づき公開されています。<br>
+            ただし以下の追加条件を適用します。</p>
+            <ul>
+                  <li>作品世界の設定、法則、歴史、特殊能力体系の改変は禁止</li>
+                  <li>登場人物の行動、状態、関係性の解釈変更および二次創作は許可</li>
+                  <li>本世界観内での新規登場人物の創作を許可（当該キャラクターの著作権は創作者に帰属）</li>
+                  <li>商用利用は禁止</li>
+            </ul>
+      </div>
+      <footer>
+            <small>
+                  Copyright © 2026 ink. All Rights Reserved.
+            </small>
+      </footer>
+</body>
+</html>

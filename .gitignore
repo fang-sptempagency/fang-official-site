@@ -1,0 +1,7 @@
+.DS_Store
+firebase-debug.log
+.firebase/*
+.firebaserc
+firebase.json
+firebase-hosting-merge.yml
+firebase-hosting-pull-request.yml
