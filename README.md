@@ -7,10 +7,6 @@
 # ABOUT
 一次創作サイト「Fang.」のソースコードです。
 
-本サイトはHTMLのみで構成し、CSSを付与しません。
-
-演出上、動的な表現が必要なUIのみJavascriptを導入します。
-
 - Author / Developer : [ink.](https://linktr.ee/notinkbutink)
 - Develop Diary : [Zenn scrap](https://zenn.dev/notinkbutink/scraps/23b2ee6646fa74)
 - Licence : [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja)
@@ -32,8 +28,11 @@ ver.X.Y.Z
 - [ ] 特殊能力仕様定義
 
 ## WANT
-- [ ] ダークモード
+- [x] ダークモード
   - [x] README
-  - [ ] サイト
 - [ ] タグ選択
 - [ ] サムネイル表示
+
+# 棄却
+- Fang.へのダークモード適用
+白ベースのFang.　黒ベースのDecan.と個性をつけるため
