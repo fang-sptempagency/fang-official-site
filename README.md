@@ -19,6 +19,14 @@ ver.X.Y.Z
 - Y : 見出し1レベルのカテゴリ追加時
 - Z : Yレベルでない修正やドキュメント更新
 
+# FOLDER NAME
+photos/      # 人物の写真
+scenarios/   # 音声の文字起こし文書
+records/     # 映像記録
+archives/    # 補足資料
+videos/      # 映像（予約語）
+assets/      # 共通素材
+
 # TODO
 ## MUST
 - [x] 世界線作図

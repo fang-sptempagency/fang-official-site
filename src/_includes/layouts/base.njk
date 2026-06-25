@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>{% if title %}{{ title }} | {% endif %}Fang.</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <main class="main">
+{{ content | safe }}
+  </main>
+
+  <footer>
+    <a href="/">HOME</a><br>
+    <small>
+      Copyright since 2026 ink. All Rights Reserved.
+    </small>
+  </footer>
+  <script src="/js/content-gate.js"></script>
+</body>
+</html>

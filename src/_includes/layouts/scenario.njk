@@ -1,0 +1,83 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="scenario-page">
+  <header class="scenario-header">
+    <p class="scenario-phase">{{ phase }}</p>
+    <p class="scenario-viewpoint">
+    {% if viewpoint !== "ND" %}
+      {{ viewpoint }}
+    {% endif %}
+    </p>
+    <h1>{{ title }}</h1>
+    <p>
+    {% if fictional_year !== "ND" %}
+      {{ fictional_year }}年
+    {% endif %}
+    {% if fictional_month !== "ND" %}
+      {{ fictional_month }}月
+    {% endif %}
+    {% if fictional_date !== "ND" %}
+      {{ fictional_date }}日
+    {% endif %}
+    </p>
+  </header>
+
+  {% if sensitive %}
+    <section
+      class="content-gate"
+      role="dialog"
+      aria-labelledby="content-gate-title"
+      aria-describedby="content-gate-description"
+      data-content-gate
+    >
+      <div class="content-gate__inner">
+        <h2 id="content-gate-title">閲覧前の確認</h2>
+
+        <p id="content-gate-description">
+          <strong>
+            {% if warning_message %}
+              {{ warning_message }}
+            {% else %}
+              本ページには精神的に負荷の高い描写が含まれます。ご自身の状態を考慮の上、閲覧をご判断ください。
+            {% endif %}
+          </strong>
+        </p>
+
+        {% if rating %}
+          <p class="content-gate__rating">指定：{{ rating }}</p>
+        {% endif %}
+
+        {% if content_warnings %}
+          <section class="content-gate__warnings" aria-label="描写内容">
+            <h3>含まれる描写</h3>
+            <ul>
+              {% for warning in content_warnings %}
+                <li>{{ warning }}</li>
+              {% endfor %}
+            </ul>
+          </section>
+        {% endif %}
+
+        <div class="content-gate__actions">
+          <button type="button" class="content-gate__enter" data-content-enter>
+            本文を読む
+          </button>
+
+          <a class="content-gate__leave" href="/">
+            戻る
+          </a>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="scenario">
+  {{ content | scenarioText | safe }}
+  </section>
+
+  <div class="production_date">
+    {{ production_date | readableDate }}
+  </div>
+</article>
