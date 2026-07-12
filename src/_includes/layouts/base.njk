@@ -5,19 +5,77 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  {% if robots %}
+    <meta name="robots" content="{{ robots }}">
+  {% endif %}
+
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
+  {% if age_gate != false %}
+    <section class="age-gate" data-age-gate hidden>
+      <div class="age-gate__panel" role="dialog" aria-modal="true" aria-labelledby="age-gate-title">
+        <p class="age-gate__label">R-18G</p>
+
+        <h1 id="age-gate-title">閲覧前の確認</h1>
+
+        <p>
+          このサイトには、暴力・流血・虐待・自殺企図・精神的負荷の高い描写を含む創作作品があります。
+        </p>
+
+        <p>
+          18歳未満の方は閲覧できません。
+        </p>
+
+        <p>
+          あなたは18歳以上ですか？
+        </p>
+
+        <div class="age-gate__actions">
+          <button type="button" data-age-enter>
+            はい、18歳以上です
+          </button>
+
+          <a href="/exit/" data-age-leave>
+            いいえ、退出します
+          </a>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
   <main class="main">
 {{ content | safe }}
   </main>
 
-  <footer>
-    <a href="/">HOME</a><br>
+  <footer class="site-footer">
+      <nav class="footer-policy-nav" aria-label="policy navigation">
+      <a href="/policy/license/">ライセンス</a>
+      <a href="/policy/commercial-use/">商用利用禁止</a>
+      <a href="/policy/ai-use/">生成AI・機械学習への利用</a>
+    </nav>
+
+    <nav class="footer-logo-nav" aria-label="related sites">
+      <a class="footer-logo-link" href="/">
+        <picture>
+          <img class="footer-logo" src="/assets/FANG-contents.svg" alt="FANG">
+        </picture>
+      </a>
+
+      <a class="footer-logo-link" href="https://object-official-site.web.app/">
+        <picture>
+          <img class="footer-logo" src="/assets/object._logo.svg" alt="Object.">
+        </picture>
+      </a>
+    </nav>
+
     <small>
-      Copyright since 2026 ink. All Rights Reserved.
+      Copyright since 2026 <a class="ink" href="https://linktr.ee/notinkbutink">ink.</a> All Rights Reserved.
     </small>
   </footer>
+
+  <script src="/js/age-gate.js"></script>
   <script src="/js/content-gate.js"></script>
+  <script src="/js/timeline-filter.js"></script>
 </body>
 </html>

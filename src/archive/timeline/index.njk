@@ -1,0 +1,62 @@
+---
+layout: layouts/base.njk
+title: 時系列
+---
+
+<article class="timeline-page">
+  <h1>時系列</h1>
+
+  <nav class="timeline-filter" aria-label="timeline route filter">
+    <button type="button" data-route-filter="fang">FANG</button>
+    <button type="button" data-route-filter="skin">SKIN</button>
+    <button type="button" data-route-filter="presence">PRESENCE</button>
+    <button type="button" data-route-filter="experiment">EXPERIMENT</button>
+  </nav>
+
+  <ol class="timeline-list">
+    {% for work in collections.timelineWorks %}
+      {% set routes = work.data.timeline.routes or [work.data.timeline.route or "main"] %}
+
+      <li
+        class="timeline-item{% if work.data.timeline.status == 'missing' %} timeline-item--missing{% endif %}"
+        data-routes="{{ routes | join(' ') }}"
+      >
+        {% if work.data.timeline.status == "missing" %}
+          <span class="timeline-title timeline-title--missing">
+            {{ work.data.title }}
+          </span>
+        {% else %}
+          <a href="{{ work.url }}">{{ work.data.title }}</a>
+        {% endif %}
+
+        <dl>
+          {% set fictionalDate = work.data.timeline | fictionalDateLabel %}
+          {% if fictionalDate %}
+            <dt>作中時間</dt>
+            <dd>{{ fictionalDate }}</dd>
+          {% endif %}
+          
+          {% if work.data.timeline.phase %}
+            <dt>phase</dt>
+            <dd>{{ work.data.timeline.phase }}</dd>
+          {% elif work.data.phase %}
+            <dt>phase</dt>
+            <dd>{{ work.data.phase }}</dd>
+          {% endif %}
+
+          <dt>routes</dt>
+          <dd>{{ routes | join(", ") }}</dd>
+
+          {% if work.data.timeline.summary %}
+            <dt>summary</dt>
+            <dd>{{ work.data.timeline.summary }}</dd>
+          {% endif %}
+        </dl>
+      </li>
+    {% endfor %}
+  </ol>
+
+  <p>
+    <a href="/timeline/map/">条件分岐を含む全体図を見る</a>
+  </p>
+</article>

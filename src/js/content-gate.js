@@ -1,24 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   const gate = document.querySelector("[data-content-gate]");
-  const body = document.querySelector("[data-content-body]");
   const enterButton = document.querySelector("[data-content-enter]");
+  const bodies = document.querySelectorAll("[data-content-body]");
 
-  if (!gate || !body || !enterButton) {
+  if (!gate || !enterButton || !bodies.length) {
     return;
   }
 
   enterButton.addEventListener("click", () => {
     gate.hidden = true;
-    body.hidden = false;
 
-    const heading = document.querySelector(".scenario-header h1");
-    if (heading) {
-      heading.focus?.();
-    }
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
+    bodies.forEach((body) => {
+      body.hidden = false;
     });
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 });

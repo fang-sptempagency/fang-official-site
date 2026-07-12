@@ -4,23 +4,28 @@ layout: layouts/base.njk
 
 <article class="scenario-page">
   <header class="scenario-header">
-    <p class="scenario-phase">{{ phase }}</p>
-    <p class="scenario-viewpoint">
-    {% if viewpoint !== "ND" %}
-      {{ viewpoint }}
-    {% endif %}
+    <p class="scenario-phase">
+      {% if phase %}
+        {{ phase }}
+      {% endif %}
     </p>
+    <p class="scenario-viewpoint">
+      {% if viewpoint %}
+        {{ viewpoint }}
+      {% endif %}
+    </p>
+
     <h1>{{ title }}</h1>
     <p>
-    {% if fictional_year !== "ND" %}
-      {{ fictional_year }}年
-    {% endif %}
-    {% if fictional_month !== "ND" %}
-      {{ fictional_month }}月
-    {% endif %}
-    {% if fictional_date !== "ND" %}
-      {{ fictional_date }}日
-    {% endif %}
+      {% if timeline.fictional_year %}
+        {{ timeline.fictional_year }}年
+      {% endif %}
+      {% if timeline.fictional_month %}
+        {{ timeline.fictional_month }}月
+      {% endif %}
+      {% if timeline.fictional_day %}
+        {{ timeline.fictional_day }}日
+      {% endif %}
     </p>
   </header>
 
@@ -73,11 +78,18 @@ layout: layouts/base.njk
     </section>
   {% endif %}
 
-  <section class="scenario">
+ <section
+    class="scenario{% if sensitive %} scenario--locked{% endif %}"
+    {% if sensitive %}data-content-body hidden{% endif %}
+  >
   {{ content | scenarioText | safe }}
   </section>
 
-  <div class="production_date">
+  <div
+    class="production_date"
+    {% if sensitive %}data-content-body hidden{% endif %}
+  >
     {{ production_date | readableDate }}
   </div>
+
 </article>
