@@ -543,3 +543,343 @@
       .ink:visited {
       color: #A00000;
       }
+      .history-page {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: clamp(3rem, 8vw, 6rem) 1.25rem;
+      }
+
+      .history-header {
+      margin-bottom: clamp(3rem, 8vw, 5rem);
+      text-align: center;
+      }
+
+      .history-header h1 {
+      margin: 0;
+      font-size: clamp(2rem, 8vw, 4rem);
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      }
+
+      .history-header p {
+      line-height: 1.8;
+      }
+
+      .vertical-timeline {
+      position: relative;
+      padding: 1rem 0 4rem;
+      }
+
+      .vertical-timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 1rem;
+      border-left: 1px solid currentColor;
+      opacity: 0.45;
+      }
+
+      .timeline-era {
+      position: relative;
+      margin: 3rem 0 1.5rem;
+      padding-left: 3rem;
+      }
+
+      .timeline-era h2 {
+      display: inline-block;
+      margin: 0;
+      padding: 0.2rem 0.65rem;
+      border: 1px solid currentColor;
+      background: #fff;
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      }
+
+      .timeline-entry {
+      position: relative;
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 1rem;
+      margin: 0 0 1.75rem;
+      }
+
+      .timeline-entry__marker {
+      position: relative;
+      z-index: 1;
+      width: 0.85rem;
+      height: 0.85rem;
+      margin: 0.45rem auto 0;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      background: #fff;
+      }
+
+      .timeline-entry--birth .timeline-entry__marker {
+      background: #000;
+      }
+
+      .timeline-entry__body {
+      padding: 0.9rem 1rem;
+      border: 1px solid currentColor;
+      background: rgba(255, 255, 255, 0.94);
+      line-height: 1.7;
+      }
+
+      .timeline-entry--history .timeline-entry__body {
+      opacity: 0.82;
+      }
+
+      .timeline-entry--birth .timeline-entry__body {
+      border-width: 2px;
+      }
+
+      .timeline-entry__year {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      opacity: 0.75;
+      }
+
+      .timeline-entry__title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 400;
+      }
+
+      .timeline-entry__person {
+      margin: 0.35rem 0 0;
+      font-size: 0.9rem;
+      opacity: 0.8;
+      }
+
+      .timeline-entry__description {
+      margin: 0.75rem 0 0;
+      font-size: 0.9rem;
+      }
+
+      @media (min-width: 720px) {
+      .vertical-timeline::before {
+      left: 50%;
+      }
+
+      .timeline-era {
+      padding-left: 0;
+      text-align: center;
+      }
+
+      .timeline-entry {
+      grid-template-columns: 1fr 2rem 1fr;
+      gap: 1rem;
+      }
+
+      .timeline-entry__marker {
+      grid-column: 2;
+      }
+
+      .timeline-entry__body {
+      grid-column: 3;
+      }
+
+      .timeline-entry--history .timeline-entry__body {
+      grid-column: 1;
+      }
+      }
+
+
+      .history-page {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: clamp(3rem, 8vw, 6rem) 1.25rem;
+      }
+
+      .history-header {
+      margin-bottom: clamp(3rem, 8vw, 5rem);
+      text-align: center;
+      }
+
+      .history-header h1 {
+      margin: 0;
+      font-size: clamp(2rem, 8vw, 4rem);
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      }
+
+      .history-header p {
+      line-height: 1.8;
+      }
+
+      .scaled-timeline {
+      position: relative;
+      }
+
+      .scaled-timeline__canvas {
+      position: relative;
+
+      /*
+      ここが年表全体の長さ。
+      長くすると、年代差がより体感できる。
+      */
+      min-height: 5200px;
+      padding: 2rem 0;
+      }
+
+      .scaled-timeline__axis {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 1rem;
+      border-left: 1px solid currentColor;
+      opacity: 0.45;
+      }
+
+      .scaled-era {
+      position: absolute;
+      left: 0;
+      right: 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.3);
+      pointer-events: none;
+      }
+
+      .scaled-era h2 {
+      position: sticky;
+      top: 1rem;
+      display: inline-block;
+      margin: 0 0 0 2.5rem;
+      padding: 0.2rem 0.65rem;
+      border: 1px solid currentColor;
+      background: #fff;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      }
+
+      .scaled-era--昭和 {
+      background: rgba(0, 0, 0, 0.035);
+      }
+
+      .scaled-era--平成 {
+      background: rgba(0, 0, 0, 0.02);
+      }
+
+      .scaled-era--令和 {
+      background: rgba(255, 255, 255, 0.4);
+      }
+
+      .scaled-timeline__canvas {
+        position: relative;
+        min-height: 15600px;
+        padding: 2rem 0;
+      }
+
+      .scaled-timeline__axis {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        border-left: 1px solid currentColor;
+        opacity: 0.5;
+      }
+
+      .scaled-event {
+        position: absolute;
+        left: 0;
+        right: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 2rem minmax(0, 1fr);
+        gap: 0.75rem;
+        transform: translateY(-0.5rem);
+      }
+
+      .scaled-event__marker {
+        grid-column: 2;
+        position: relative;
+        z-index: 2;
+        width: 0.85rem;
+        height: 0.85rem;
+        margin: 0.45rem auto 0;
+        border: 1px solid currentColor;
+        border-radius: 999px;
+        background: #fff;
+      }
+
+      .scaled-event__body {
+        width: 100%;
+        max-width: 18rem;
+        padding: 0.75rem 0.85rem;
+        border: 1px solid currentColor;
+        background: rgba(255, 255, 255, 0.94);
+        line-height: 1.7;
+      }
+
+      /* 左：実在の出来事 */
+      .scaled-event--real .scaled-event__body {
+        grid-column: 1;
+        justify-self: end;
+        text-align: right;
+      }
+
+      /* 右：FANGの出来事 */
+      .scaled-event--fang .scaled-event__body {
+        grid-column: 3;
+        justify-self: start;
+        text-align: left;
+      }
+
+      /* 種別ごとの見た目 */
+      .scaled-event--birth .scaled-event__marker {
+        background: #000;
+      }
+
+      .scaled-event--history .scaled-event__marker {
+        background: #fff;
+      }
+
+      .scaled-event--work .scaled-event__marker,
+      .scaled-event--event .scaled-event__marker {
+        border-width: 2px;
+      }
+
+      .scaled-event--birth .scaled-event__body {
+        border-width: 2px;
+      }
+
+      .scaled-event--history .scaled-event__body {
+        opacity: 0.86;
+      }
+
+      .scaled-event__date {
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        opacity: 0.75;
+      }
+
+      .scaled-event__title {
+        margin: 0;
+        font-size: 0.95rem;
+        font-weight: 400;
+      }
+
+      .scaled-event__title a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .scaled-event__title a:hover {
+        text-decoration: underline;
+      }
+
+      .scaled-event__person {
+        margin: 0.35rem 0 0;
+        font-size: 0.85rem;
+        opacity: 0.8;
+      }
+
+      .scaled-event__description {
+        margin: 0.75rem 0 0;
+        font-size: 0.85rem;
+      }
