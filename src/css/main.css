@@ -949,6 +949,10 @@
         background: #000;
       }
 
+      .scaled-event--fang .scaled-event__marker {
+        background: #000;
+      }
+
       .scaled-event--history .scaled-event__marker {
         background: #fff;
       }
