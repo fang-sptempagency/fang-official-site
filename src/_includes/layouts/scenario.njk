@@ -5,8 +5,8 @@ layout: layouts/base.njk
 <article class="scenario-page">
   <header class="scenario-header">
     <p class="scenario-phase">
-      {% if phase %}
-        {{ phase }}
+      {% if timeline.phase %}
+        {{ timeline.phase }}
       {% endif %}
     </p>
     <p class="scenario-viewpoint">
