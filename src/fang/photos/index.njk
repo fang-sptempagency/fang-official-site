@@ -1,0 +1,79 @@
+---
+layout: layouts/base.njk
+title: Photos
+listed: false
+---
+
+<article class="photo-index">
+  <header class="photo-index-header">
+    <h1>Photos</h1>
+  </header>
+
+  <section class="photo-filter" aria-label="person filter">
+    <button type="button" class="photo-filter__button" data-person-filter="all">
+      All
+    </button>
+
+    <button type="button" class="photo-filter__button" data-person-filter="延金英一">延金英一</button>
+    <button type="button" class="photo-filter__button" data-person-filter="葛城正親">葛城正親</button>
+    <button type="button" class="photo-filter__button" data-person-filter="指宿楓">指宿楓</button>
+    <button type="button" class="photo-filter__button" data-person-filter="風間竜也">風間竜也</button>
+    <button type="button" class="photo-filter__button" data-person-filter="四方椿">四方椿</button>
+    <button type="button" class="photo-filter__button" data-person-filter="篠原堅">篠原堅</button>
+    <button type="button" class="photo-filter__button" data-person-filter="戸次信長">戸次信長</button>
+    <button type="button" class="photo-filter__button" data-person-filter="鳥本春樹">鳥本春樹</button>
+    <button type="button" class="photo-filter__button" data-person-filter="四方優也">四方優也</button>
+    <button type="button" class="photo-filter__button" data-person-filter="本田千和">本田千和</button>
+    <button type="button" class="photo-filter__button" data-person-filter="横島透">横島透</button>
+  </section>
+
+  <section class="photo-grid" aria-label="illustration list">
+    {% for photo in collections.photos %}
+      <article
+        class="photo-card"
+        data-persons="{% if photo.data.persons %}{{ photo.data.persons | join(' ') }}{% endif %}"
+      >
+        <a class="photo-card__link" href="{{ photo.url }}">
+          <figure class="photo-card__thumbnail">
+            {% if photo.data.thumbnail %}
+              <img
+                src="{{ photo.url }}{{ photo.data.thumbnail }}"
+                alt="{{ photo.data.title }}"
+                loading="lazy"
+                decoding="async"
+              >
+            {% elif photo.data.image %}
+              <img
+                src="{{ photo.url }}{{ photo.data.image }}"
+                alt="{{ photo.data.title }}"
+                loading="lazy"
+                decoding="async"
+              >
+            {% endif %}
+          </figure>
+
+          <div class="photo-card__body">
+            <p class="photo-card__meta">
+              {% if photo.data.production_date %}
+                {{ photo.data.production_date | readableDate }}
+              {% endif %}
+              {% if photo.data.phase %}
+                / {{ photo.data.phase }}
+              {% endif %}
+            </p>
+
+            <h2 class="photo-card__title">{{ photo.data.title }}</h2>
+
+            {% if photo.data.persons %}
+              <p class="photo-card__persons">
+                {% for person in photo.data.persons %}
+                  {{ person }}{% if not loop.last %} / {% endif %}
+                {% endfor %}
+              </p>
+            {% endif %}
+          </div>
+        </a>
+      </article>
+    {% endfor %}
+  </section>
+</article>
