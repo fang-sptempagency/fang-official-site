@@ -3,4 +3,3 @@ _site/
 firebase-debug.log
 .firebase/*
 node_modules/
-private/
