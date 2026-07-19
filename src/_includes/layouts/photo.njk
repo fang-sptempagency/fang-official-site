@@ -1,0 +1,17 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="photo-page">
+  <figure class="photo-main">
+    <img src="{{ image }}" alt="{{ title }}">
+    <figcaption>
+      Title：{{ title }}<br>
+      Phase：{{ phase }}<br>
+      {% if viewpoint !== "ND" %}
+        Viewpoint：{{ viewpoint }}<br>
+      {% endif %}
+      Production date：{{ production_date | readableDate }}
+    </figcaption>
+  </figure>
+</article>
