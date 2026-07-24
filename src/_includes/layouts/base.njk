@@ -11,7 +11,7 @@
 
   <link rel="stylesheet" href="/css/main.css">
 </head>
-<body>
+<body class="{{ body_class or '' }}{% if sensitive %} is-sensitive{% endif %}">
   {% if age_gate != false %}
     <section class="age-gate" data-age-gate hidden>
       <div class="age-gate__panel" role="dialog" aria-modal="true" aria-labelledby="age-gate-title">

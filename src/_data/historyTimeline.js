@@ -89,6 +89,18 @@ module.exports = {
       side: "real"
     },
     {
+      year: 1975,
+      title: "葛城正親（5才）、蔵の中で特殊能力に目覚めて発狂する",
+      type: "history",
+      side: "fang"
+    },
+    {
+      year: 1976,
+      title: "葛城正親（6才）、延金英一（21才）の尽力で正気を取り戻す",
+      type: "history",
+      side: "fang"
+    },
+    {
       year: 1982,
       title: "延金英一（27才）、葛城正親（12才）を残して時間凍結される",
       type: "history",

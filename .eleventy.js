@@ -1,18 +1,24 @@
+const episodeLanes = require("./src/_data/episodeLanes.js");
+
 module.exports = function(eleventyConfig) {
+  eleventyConfig.addWatchTarget("./src/fang/episodes/");
+  eleventyConfig.addWatchTarget("./src/fang/episodes/index.njk");
+  eleventyConfig.addWatchTarget("./src/_includes/");
+
   eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/assets");
 
-  eleventyConfig.addPassthroughCopy("src/photos/**/*.webp");
+  eleventyConfig.addPassthroughCopy("src/fang/photos/**/*.webp");
+  eleventyConfig.addPassthroughCopy("src/fang/episodes/**/*.webp");
   eleventyConfig.addPassthroughCopy("src/records/**/*.webp");
   eleventyConfig.addPassthroughCopy("src/archives/**/*.webp");
 
-  eleventyConfig.addPassthroughCopy("src/js");
-  
   eleventyConfig.addFilter("readableDate", function(dateObj) {
     var y = dateObj.getFullYear();
-    var m = ('00' + (dateObj.getMonth()+1)).slice(-2);
-    var d = ('00' + dateObj.getDate()).slice(-2);
-    return (y + '/' + m + '/' + d);
+    var m = dateObj.getMonth()+1;
+    var d = dateObj.getDate();
+    return `${y}年${m}月${d}日`;
   });
 
   eleventyConfig.addCollection("timelineWorks", function(collectionApi) {
@@ -43,6 +49,38 @@ module.exports = function(eleventyConfig) {
     }
 
     return `${year}年`;
+  });
+
+  eleventyConfig.addFilter("findEpisodeLane", function(viewpoint) {
+    return episodeLanes.find((lane) => lane.name === viewpoint) || {
+      name: viewpoint || "その他",
+      key: "other",
+      color: "#666666",
+      label: viewpoint || "その他"
+    };
+  });
+
+  eleventyConfig.addFilter("hasEpisodeLane", function(viewpoint) {
+    return episodeLanes.some((lane) => lane.name === viewpoint);
+  });
+
+  eleventyConfig.addCollection("episodes", function(collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/fang/episodes/*/index.njk")
+      .filter((item) => item.data.listed !== false)
+      .sort((a, b) => {
+        const aKey = a.data.timeline?.sort_key || 9999999999;
+        const bKey = b.data.timeline?.sort_key || 9999999999;
+        return Number(aKey) - Number(bKey);
+      });
+  });
+
+  eleventyConfig.addFilter("pageNumbers", function(count) {
+    const pageCount = Number(count || 0);
+
+    return Array.from({ length: pageCount }, (_, index) => {
+      return String(index + 1).padStart(3, "0");
+    });
   });
 
   eleventyConfig.addCollection("persons", function(collectionApi) {
@@ -86,7 +124,18 @@ module.exports = function(eleventyConfig) {
       return line;
     })
     .join("\n");
-});
+  });
+
+  eleventyConfig.addCollection("photos", function(collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/fang/photos/*/index.njk")
+      .filter((item) => item.data.listed !== false)
+      .sort((a, b) => {
+        const aDate = a.data.production_date || new Date(0);
+        const bDate = b.data.production_date || new Date(0);
+        return bDate - aDate;
+      });
+  });
 
   eleventyConfig.addCollection("historyTimelineEvents", function() {
     const timeline = require("./src/_data/historyTimeline.js");

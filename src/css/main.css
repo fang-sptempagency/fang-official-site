@@ -1,8 +1,22 @@
+      :root {
+        --font-gothic-ja: "Hiragino Sans", "Yu Gothic", "YuGothic", "Noto Sans JP", sans-serif;
+        --font-mincho-ja: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP", serif;
+        --font-mono: "Courier Prime", "Courier New", monospace;
+      }
+
       body {
-      margin: 2rem;
-      background: #fff;
-      color: #000;
-      font-family: serif;
+        font-family: var(--font-mincho-ja);
+        margin: 2rem;
+        background: #fff;
+        color: #000;
+      }
+
+      body.site-fang {
+        font-family: var(--font-mincho-ja);
+      }
+
+      body.site-archive {
+        font-family: var(--font-mincho-ja);
       }
 
       .logo {
@@ -544,19 +558,53 @@
       color: #A00000;
       }
 
-      .archive-menu {
+      .archive-home__nav {
       text-align: center;
       font-size: clamp(1.5rem, 8vw, 3rem);
       }
 
-      .archive-menu a {
+      .archive-home__nav a {
       color: inherit;
       text-decoration: none;
       }
 
-      .archive-menu a:hover {
+      .archive-home__nav a:hover {
         color: white;
         background-color: black;
+      }
+
+      .archive-home__nav ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .archive-home__nav li {
+        padding: 0.2em;
+      }
+
+      .fang-home__menu {
+        text-align: center;
+        font-size: clamp(1.5rem, 8vw, 3rem);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .fang-home__menu li {
+        margin: 1rem 0;
+      }
+
+      .fang-home__menu a {
+        position: relative;
+        display: inline-block;
+        color: inherit;
+        padding: 0.05em 0.12em;
+        isolation: isolate;
+        text-decoration: none;
+      }
+
+      .fang-home__nav a:hover {
+        background-color: #ff8800;
       }
 
       .photo-index {
@@ -1017,4 +1065,398 @@
       .scaled-event__description {
         margin: 0.75rem 0 0;
         font-size: 0.85rem;
+      }
+
+      .episodes-index {
+        width: min(100%, 1200px);
+        margin: 0 auto;
+        padding: clamp(3rem, 7vw, 6rem) 1.25rem;
+      }
+
+      .episodes-index__header {
+        margin-bottom: 2.5rem;
+        text-align: center;
+      }
+
+      .episodes-index__header h1 {
+        margin: 0;
+        font-size: clamp(2rem, 6vw, 4rem);
+        font-weight: 400;
+        letter-spacing: 0.12em;
+      }
+
+      .episodes-index__header p {
+        line-height: 1.8;
+      }
+
+      .episodes-timeline {
+        --date-column-width: 8rem;
+      }
+
+      .episodes-head,
+      .episodes-row {
+        display: grid;
+        grid-template-columns: var(--date-column-width) repeat(var(--lane-count), minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .episodes-head {
+        margin-bottom: 1rem;
+        align-items: end;
+      }
+
+      .episodes-head__date {
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        opacity: 0.7;
+      }
+
+      .episodes-head__lane {
+        text-align: center;
+      }
+
+      .episodes-head__label {
+        display: inline-block;
+        padding-bottom: 0.25rem;
+        border-bottom: 3px solid var(--lane-color);
+        font-size: 0.9rem;
+        letter-spacing: 0.08em;
+      }
+
+      .episodes-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .episodes-row {
+        position: relative;
+        margin: 0;
+        padding: 0 0 2rem;
+      }
+
+      .episodes-row__date {
+        padding-top: 0.5rem;
+        font-size: 0.85rem;
+        line-height: 1.6;
+        opacity: 0.8;
+      }
+
+      .episodes-row__cell {
+        position: relative;
+        min-height: 12rem;
+      }
+
+      .episodes-row__line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2px;
+        transform: translateX(-50%);
+        background: var(--lane-color);
+        opacity: 0.35;
+      }
+
+      .episode-card {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 17rem);
+        margin: 0 auto;
+        border: 1px solid currentColor;
+        background: #fff;
+        box-shadow: 0 0 0 3px #fff;
+      }
+
+      .episode-card--rough {
+        border-left: 4px solid var(--lane-color);
+      }
+
+      .episode-card__thumb {
+        display: block;
+        text-decoration: none;
+      }
+
+      .episode-card__thumb img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-bottom: 1px solid currentColor;
+      }
+
+      .episode-card__body {
+        padding: 0.85rem 0.9rem 1rem;
+      }
+
+      .episode-card__viewpoint {
+        margin: 0 0 0.35rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        color: var(--lane-color);
+      }
+
+      .episode-card__title {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+      .episode-card__title a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .episode-card__title a:hover {
+        text-decoration: underline;
+      }
+
+      .episode-card__summary {
+        margin: 0.6rem 0 0;
+        font-size: 0.85rem;
+        line-height: 1.8;
+      }
+
+      .episode-card__mode {
+        margin: 0.75rem 0 0;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        opacity: 0.65;
+      }
+      
+      .episodes-other {
+        margin-top: clamp(4rem, 10vw, 8rem);
+        padding-top: clamp(2rem, 6vw, 4rem);
+        border-top: 1px solid currentColor;
+      }
+
+      .episodes-other__header {
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .episodes-other__header h2 {
+        margin: 0;
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        font-weight: 400;
+        letter-spacing: 0.12em;
+      }
+
+      .episodes-other__header p {
+        margin: 1rem 0 0;
+        line-height: 1.8;
+        opacity: 0.75;
+      }
+
+      .episodes-other__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: clamp(1rem, 3vw, 2rem);
+      }
+
+      .episode-card--other {
+        width: auto;
+        margin: 0;
+        border-left: 4px solid var(--lane-color);
+      }
+
+      .episode-card__date {
+        margin: 0.5rem 0 0;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        opacity: 0.7;
+      }
+
+      @media (max-width: 900px) {
+        .episodes-timeline {
+          --date-column-width: 6.5rem;
+        }
+
+        .episodes-head,
+        .episodes-row {
+          gap: 0.75rem;
+        }
+
+        .episode-card {
+          width: min(100%, 14rem);
+        }
+      }
+
+      .episode-page {
+        width: min(100%, 860px);
+        margin: 0 auto;
+        padding: clamp(3rem, 7vw, 6rem) 1.25rem;
+      }
+
+      .episode-header {
+        margin-bottom: clamp(2.5rem, 7vw, 4rem);
+        text-align: center;
+      }
+
+      .episode-header__phase {
+        margin: 0 0 0.75rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.16em;
+        opacity: 0.7;
+      }
+
+      .episode-header__viewpoint {
+        display: inline-block;
+        margin: 0 0 1rem;
+        padding-bottom: 0.25rem;
+        border-bottom: 3px solid var(--episode-color, currentColor);
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+      }
+
+      .episode-header__title {
+        margin: 0;
+        font-size: clamp(2rem, 8vw, 4rem);
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        line-height: 1.4;
+      }
+
+      .episode-header__summary {
+        width: min(100%, 38rem);
+        margin: 1.5rem auto 0;
+        line-height: 1.9;
+        text-align: left;
+      }
+
+      .episode_meta {
+        display: grid;
+        gap: 0.5rem;
+        width: min(100%, 32rem);
+        margin: 2rem auto;
+        font-size: 0.85rem;
+        line-height: 1.7;
+        text-align: left;
+      }
+
+      .episode_meta div {
+        display: grid;
+        grid-template-columns: 7rem 1fr;
+        gap: 1rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.18);
+        padding-top: 0.5rem;
+      }
+
+      .episode_meta dt {
+        opacity: 0.65;
+      }
+
+      .episode_meta dd {
+        margin: 0;
+      }
+
+      .episode-thumbnail {
+        width: min(100%, 520px);
+        margin: 0 auto clamp(2.5rem, 7vw, 4rem);
+        border: 1px solid currentColor;
+        background: #fff;
+      }
+
+      .episode-thumbnail img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .episode-rough-notice {
+        width: min(100%, 32rem);
+        margin: 0 auto clamp(2.5rem, 7vw, 4rem);
+        padding: 1rem;
+        border: 1px dashed currentColor;
+        text-align: center;
+        line-height: 1.8;
+        opacity: 0.78;
+      }
+
+      .episode-description {
+        width: min(100%, 38rem);
+        margin: 0 auto clamp(2.5rem, 7vw, 4rem);
+        line-height: 1.9;
+      }
+
+      .episode-page {
+        margin: 0 auto;
+        padding: clamp(3rem, 7vw, 6rem) 1.25rem;
+      }
+
+      .episode-pages {
+        display: grid;
+        gap: clamp(1rem, 4vw, 2rem);
+        margin-top: clamp(2.5rem, 7vw, 4rem);
+      }
+
+      .episode-page-image {
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .episode-page-image img {
+        display: block;
+        height: auto;
+        margin-inline: auto;
+        border: 1px solid rgba(0, 0, 0, 0.16);
+      }
+
+      .episode-page-image:not(.episode-page-image--spread) img {
+        width: min(100%, 760px);
+      }
+
+      .episode-page-image--spread img {
+        width: min(100%, 1500px);
+      }
+      
+      .episode-footer {
+        text-align: center;
+      }
+      
+      .episode-footer a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
+      }
+
+      .episode-footer a:hover {
+        opacity: 0.7;
+      }
+
+      /* スマホでは1列表示に崩す */
+      @media (max-width: 700px) {
+        .episodes-head {
+          display: none;
+        }
+
+        .episodes-row {
+          display: block;
+          margin-bottom: 1.5rem;
+          padding-bottom: 0;
+        }
+
+        .episodes-row__date {
+          margin-bottom: 0.5rem;
+        }
+
+        .episodes-row__cell {
+          display: none;
+          min-height: auto;
+        }
+
+        .episodes-row__cell:has(.episode-card) {
+          display: block;
+        }
+
+        .episodes-row__line {
+          left: 0.5rem;
+        }
+
+        .episode-card {
+          width: auto;
+          margin-left: 1.5rem;
+        }
       }

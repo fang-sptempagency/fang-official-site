@@ -1,0 +1,94 @@
+---
+layout: layouts/fang-base.njk
+title: FANG
+---
+
+<article class="episode-page">
+  <header class="episode-header">
+    {% if phase %}
+      <p class="episode-header__phase">{{ phase }}</p>
+    {% endif %}
+
+    {% if viewpoint %}
+      <p
+        class="episode-header__viewpoint"
+        {% if viewpoint | findEpisodeLane %}
+          {% set lane = viewpoint | findEpisodeLane %}
+          style="--episode-color: {{ lane.color }};"
+        {% endif %}
+      >
+        {{ viewpoint }}
+      </p>
+    {% endif %}
+
+    <h1 class="episode-header__title">{{ title }}</h1>
+
+    {% if summary %}
+      <p class="episode-header__summary">
+        {{ summary }}
+      </p>
+    {% endif %}
+
+  </header>
+
+  {% if content %}
+    <section class="episode-description">
+      {{ content | safe }}
+    </section>
+  {% endif %}
+
+  {% if pages %}
+    <section class="episode-pages" aria-label="漫画本文">
+      {% for page in pages %}
+        <figure class="episode-page-image{% if page.layout == 'spread' %} episode-page-image--spread{% endif %}">
+          <img
+            src="{{ page.file }}"
+            alt="{% if page.alt %}{{ page.alt }}{% else %}{{ title }} {{ loop.index }}ページ{% endif %}"
+            loading="{% if loop.first %}eager{% else %}lazy{% endif %}"
+            decoding="async"
+          >
+        </figure>
+      {% endfor %}
+    </section>
+  {% elif page_count %}
+    <section class="episode-pages" aria-label="漫画本文">
+      {% for pageNumber in page_count | pageNumbers %}
+        <figure class="episode-page-image">
+          <img
+            src="pages/{{ pageNumber }}.webp"
+            alt="{{ title }} {{ loop.index }}ページ"
+            loading="{% if loop.first %}eager{% else %}lazy{% endif %}"
+            decoding="async"
+          >
+        </figure>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  <footer class="episode-footer">
+        <dl class="episode_meta">
+      {% if timeline %}
+        <div>
+          <dt>作中時間</dt>
+          <dd>{{ timeline | fictionalDateLabel }}</dd>
+        </div>
+      {% endif %}
+
+      {% if production_date %}
+        <div>
+          <dt>制作日</dt>
+          <dd>{{ production_date | readableDate }}</dd>
+        </div>
+      {% endif %}
+
+      {% if status %}
+        <div>
+          <dt>status</dt>
+          <dd>{{ status }}</dd>
+        </div>
+      {% endif %}
+    </dl>
+
+    <a href="/fang/episodes/">Episodes</a>
+  </footer>
+</article>
