@@ -1,0 +1,142 @@
+---
+layout: layouts/fang-base.njk
+title: Episodes
+listed: false
+---
+
+<article class="episodes-index">
+  <header class="episodes-index__header">
+    <h1>Episodes</h1>
+  </header>
+
+  <section class="episodes-timeline" style="--lane-count: {{ episodeLanes | length }};">
+    <div class="episodes-head">
+      <div class="episodes-head__date">Date</div>
+
+      {% for lane in episodeLanes %}
+        <div class="episodes-head__lane">
+          <span
+            class="episodes-head__label"
+            style="--lane-color: {{ lane.color }};"
+          >
+            {{ lane.label }}
+          </span>
+        </div>
+      {% endfor %}
+    </div>
+
+    <ol class="episodes-list">
+      {% for episode in collections.episodes %}
+        {% if episode.data.viewpoint | hasEpisodeLane %}
+          {% set currentLane = episode.data.viewpoint | findEpisodeLane %}
+
+          <li class="episodes-row">
+            <div class="episodes-row__date">
+              {% if episode.data.timeline %}
+                {{ episode.data.timeline | fictionalDateLabel }}
+              {% elif episode.data.production_date %}
+                {{ episode.data.production_date | readableDate }}
+              {% endif %}
+            </div>
+
+            {% for lane in episodeLanes %}
+              <div
+                class="episodes-row__cell"
+                style="--lane-color: {{ lane.color }};"
+              >
+                <div class="episodes-row__line" aria-hidden="true"></div>
+
+                {% if lane.name == episode.data.viewpoint %}
+                  <article
+                    class="episode-card{% if not episode.data.thumbnail %} episode-card--rough{% endif %}"
+                    style="--lane-color: {{ currentLane.color }};"
+                  >
+                    {% if episode.data.thumbnail %}
+                      <a class="episode-card__thumb" href="{{ episode.url }}">
+                        <img
+                          src="{{ episode.url }}{{ episode.data.thumbnail }}"
+                          alt="{{ episode.data.title }}"
+                          loading="lazy"
+                          decoding="async"
+                        >
+                      </a>
+                    {% endif %}
+
+                    <div class="episode-card__body">
+                      <p class="episode-card__viewpoint">
+                        {{ episode.data.viewpoint }}
+                      </p>
+
+                      <h2 class="episode-card__title">
+                        <a href="{{ episode.url }}">{{ episode.data.title }}</a>
+                      </h2>
+
+                      {% if episode.data.summary %}
+                        <p class="episode-card__summary">
+                          {{ episode.data.summary }}
+                        </p>
+                      {% endif %}
+                    </div>
+                  </article>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="episodes-other" aria-labelledby="episodes-other-title">
+    <header class="episodes-other__header">
+      <h2 id="episodes-other-title">Other Episodes</h2>
+      <p>一般的な特殊能力者の記録</p>
+    </header>
+
+    <div class="episodes-other__grid">
+      {% for episode in collections.episodes %}
+        {% if not (episode.data.viewpoint | hasEpisodeLane) %}
+          {% set currentLane = episode.data.viewpoint | findEpisodeLane %}
+
+          <article
+            class="episode-card episode-card--other{% if not episode.data.thumbnail %} episode-card--rough{% endif %}"
+            style="--lane-color: {{ currentLane.color }};"
+          >
+            {% if episode.data.thumbnail %}
+              <a class="episode-card__thumb" href="{{ episode.url }}">
+                <img
+                  src="{{ episode.url }}{{ episode.data.thumbnail }}"
+                  alt="{{ episode.data.title }}"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </a>
+            {% endif %}
+
+            <div class="episode-card__body">
+              <p class="episode-card__viewpoint">
+                {{ episode.data.viewpoint or "その他" }}
+              </p>
+
+              <h3 class="episode-card__title">
+                <a href="{{ episode.url }}">{{ episode.data.title }}</a>
+              </h3>
+
+              {% if episode.data.timeline %}
+                <p class="episode-card__date">
+                  {{ episode.data.timeline | fictionalDateLabel }}
+                </p>
+              {% endif %}
+
+              {% if episode.data.summary %}
+                <p class="episode-card__summary">
+                  {{ episode.data.summary }}
+                </p>
+              {% endif %}
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+</article>
