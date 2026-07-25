@@ -607,6 +607,39 @@
         background-color: #ff8800;
       }
 
+      .door-transition-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background: #ff8800;
+        opacity: 0;
+        pointer-events: none;
+        transform-origin: bottom;
+        pointer-events: none;
+      }
+
+      .door-transition-overlay.is-active {
+        animation: door-page-flash 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      @keyframes door-page-flash {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .door-transition-overlay.is-active {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+      }
+
       .photo-index {
       width: min(100%, 1120px);
       margin: 0 auto;
