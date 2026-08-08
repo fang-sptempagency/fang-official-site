@@ -1,0 +1,115 @@
+---
+layout: layouts/base.njk
+title: References
+listed: false
+---
+
+<article class="references-page">
+  <header class="references-header">
+    <h1>参考文献</h1>
+
+    <p>
+      本ページは、Fang.制作のために参照した資料・文献・公開情報を記録するものです。
+      記載された資料の内容は、作中設定・人物・事件の直接の根拠ではなく、
+      作者が世界観や人物背景を考える際の参照情報です。
+    </p>
+  </header>
+
+{% set groupedReferences = references | groupReferencesByCategory %}
+
+  <section class="references-sections" aria-label="reference list">
+    {% for group in groupedReferences %}
+      <section class="references-category" aria-labelledby="reference-category-{{ loop.index }}">
+        <header class="references-category__header">
+          <h2 id="reference-category-{{ loop.index }}">{{ group.name }}</h2>
+          <p>{{ group.items.length }}件</p>
+        </header>
+
+        <ol class="reference-list">
+          {% for reference in group.items %}
+            <li class="reference-item" id="{{ reference.id }}">
+              <article class="reference-card">
+                <header class="reference-card__header">
+                  <p class="reference-card__meta">
+                    <span>{{ reference.type | referenceTypeLabel }}</span>
+                    {% if reference.year %}
+                      <span>{{ reference.year }}</span>
+                    {% endif %}
+                    {% if reference.status %}
+                      <span>{{ reference.status | referenceStatusLabel }}</span>
+                    {% endif %}
+                  </p>
+
+                  <h3 class="reference-card__title">
+                    {% if reference.url %}
+                      <a href="{{ reference.url }}" target="_blank" rel="noopener noreferrer">
+                        {{ reference.title }}
+                      </a>
+                    {% else %}
+                      {{ reference.title }}
+                    {% endif %}
+                  </h3>
+                </header>
+
+                <dl class="reference-card__details">
+                  {% if reference.authors %}
+                    <div>
+                      <dt>著者・発行元</dt>
+                      <dd>
+                        {% for author in reference.authors %}
+                          {{ author }}{% if not loop.last %} / {% endif %}
+                        {% endfor %}
+                      </dd>
+                    </div>
+                  {% endif %}
+
+                  {% if reference.publisher %}
+                    <div>
+                      <dt>出版社・発行元</dt>
+                      <dd>{{ reference.publisher }}</dd>
+                    </div>
+                  {% endif %}
+
+                  {% if reference.isbn %}
+                    <div>
+                      <dt>ISBN</dt>
+                      <dd>{{ reference.isbn }}</dd>
+                    </div>
+                  {% endif %}
+
+                  {% if reference.relatedPersons %}
+                    <div>
+                      <dt>関連人物</dt>
+                      <dd>
+                        {% for person in reference.relatedPersons %}
+                          {{ person }}{% if not loop.last %} / {% endif %}
+                        {% endfor %}
+                      </dd>
+                    </div>
+                  {% endif %}
+
+                  {% if reference.relatedPhases %}
+                    <div>
+                      <dt>関連フェーズ</dt>
+                      <dd>
+                        {% for phase in reference.relatedPhases %}
+                          {{ phase }}{% if not loop.last %} / {% endif %}
+                        {% endfor %}
+                      </dd>
+                    </div>
+                  {% endif %}
+                </dl>
+
+                {% if reference.note %}
+                  <p class="reference-card__note">
+                    {{ reference.note }}
+                  </p>
+                {% endif %}
+              </article>
+            </li>
+          {% endfor %}
+        </ol>
+      </section>
+    {% endfor %}
+  </section>
+</article>

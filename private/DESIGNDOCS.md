@@ -25,6 +25,20 @@ status: draft      # 脚本あり・仮
 status: missing    # 脚本なし・タイムライン上の目印
 status: branch     # 分岐点
 
+# REFERENCES STATUS
+read        読了
+referenced  部分参照
+skimmed     流し読み
+reading     読書中
+to-read     参照予定
+
+# REFERENCES TYPE
+book        書籍
+whitepaper  白書・公的資料
+paper       論文
+article     記事
+website     Webページ
+
 # AUTO CONVERT SCRIPT
 make-photo-folders.zsh  # イラストを作品ごとに準備するためのスクリプト。inputにYYYYMMDD_タイトル.pngを投げ込んで実行。outputにフォルダが生成される。
 make-photo-thumbs.zsh   # すでに作ったイラストフォルダ内をチェックして、サムネイルを自動生成するスクリプト。

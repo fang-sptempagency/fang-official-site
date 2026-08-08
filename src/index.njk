@@ -7,42 +7,72 @@
   <link rel="stylesheet" href="/css/main.css">
 </head>
 
-<article class="portal-page">
-  <header class="portal-header">
-  <h2>表現の警告</h2>
+<body>
+  <article class="portal-page">
+    <header class="portal-header">
+      <section class="site-warning" aria-labelledby="site-warning-title">
+        <h2 id="site-warning-title">表現の警告</h2>
+        
+        <div class="site-rating">
+          <p>本コンテンツはR-18G指定です。</p>
+          <p>暴力・流血・虐待・自殺企図・精神的負荷の高い描写を含みます。</p>
+          <p>18歳未満の方や、精神的な健康に不安のある方は閲覧をご遠慮ください。</p>
+        </div>
+      </section>
+    </header>
 
-    <p class="site-rating">
-      <p>本コンテンツはR-18G指定です。</p>
-      <p>暴力・流血・虐待・自殺企図・精神的負荷の高い描写を含みます。</p>
-      <p>18歳未満の方や、精神的な健康に不安のある方は閲覧をご遠慮ください。</p>
-    </p>
-  </header>
+    <section class="portal-choices" aria-label="site entrances">
+      <a class="portal-card portal-card--visual" href="/fang/">
+        <picture>
+          <img
+            class="portal-card__logo"
+            src="/assets/FANG-visual.svg"
+            alt="Fang. 昭和、平成、令和 東京都 物理法則を超えた力が在る社会にて"
+          >
+        </picture>
+        <span class="portal-card__title">画像</span>
+        <span class="portal-card__description">
+          漫画、イラストはこちら
+        </span>
+      </a>
 
-  <section class="portal-choices" aria-label="site entrances">
-    <a class="portal-card portal-card--visual" href="/fang/">
-     <picture>
-      <img class="logo" src="assets/FANG-visual.svg" width="100%" style="max-width:700px" alt="Fang.|昭和、平成、令和　東京都　物理法則を超えた力が在る社会にて">
-      </picture>
-      <span class="portal-card__label">FANG</span>
-      <span class="portal-card__title">画像</span>
-      <span class="portal-card__description">
-        漫画、イラストはこちら
-      </span>
-    </a>
+      <a class="portal-card portal-card--archive" href="/archive/">
+        <picture>
+          <img
+            class="portal-card__logo"
+            src="/assets/FANG-audio.svg"
+            alt="Fang. 昭和、平成、令和 東京都 物理法則を超えた力が在る社会にて"
+          >
+        </picture>
+        <span class="portal-card__title">文書</span>
+        <span class="portal-card__description">
+          脚本、背景資料はこちら
+        </span>
+      </a>
+    </section>
 
-    <a class="portal-card portal-card--archive" href="/archive/">
-    <picture>
-      <img class="logo" src="assets/FANG-audio.svg" width="100%" alt="Fang.|昭和、平成、令和　東京都　物理法則を超えた力が在る社会にて">
-      </picture>
-      <span class="portal-card__label">Fang.</span>
-      <span class="portal-card__title">文書</span>
-      <span class="portal-card__description">
-        脚本、背景資料はこちら
-      </span>
-    </a>
-  </section>
+    <section class="portal-subnav" aria-labelledby="portal-subnav-title">
+      <h2 id="portal-subnav-title">関連資料</h2>
 
-</article>
+      <nav class="portal-link-list" aria-label="related links">
+        <a class="portal-link-item" href="https://fang.booth.pm/" target="_blank" rel="noopener noreferrer">
+          <span class="portal-link-item__label">BOOTH</span>
+          <span class="portal-link-item__title">頒布物</span>
+          <span class="portal-link-item__description">
+            本・グッズ・資料セットなど
+          </span>
+        </a>
+
+        <a class="portal-link-item" href="/references/">
+          <span class="portal-link-item__label">References</span>
+          <span class="portal-link-item__title">参考文献</span>
+          <span class="portal-link-item__description">
+            Fang.制作のために参照した書籍・文献・公開資料
+          </span>
+        </a>
+      </nav>
+    </section>
+  </article>
 
   <footer class="site-footer">
     <nav class="footer-policy-nav" aria-label="policy navigation">
@@ -50,15 +80,18 @@
       <a href="/policy/commercial-use/">商用利用禁止</a>
       <a href="/policy/ai-use/">生成AI・機械学習への利用</a>
     </nav>
-    <a href="https://object-official-site.web.app/">
-    <picture>
-      <img class="footer-logo" src="assets/object._logo.svg" width="100%" alt="Object.">
+
+    <a class="footer-logo-link" href="https://object-official-site.web.app/">
+      <picture>
+        <img class="footer-logo object-logo" src="/assets/object._logo.svg" alt="Object.">
       </picture>
-    </a><br>
+    </a>
+
     <small>
-      Copyright since 2026 <a class="ink" href="https://linktr.ee/notinkbutink">ink.</a> All Rights Reserved.
+      Copyright since 2026
+      <a class="ink" href="https://linktr.ee/notinkbutink">ink.</a>
+      All Rights Reserved.
     </small>
   </footer>
-
 </body>
 </html>
