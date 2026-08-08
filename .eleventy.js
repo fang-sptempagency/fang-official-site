@@ -3,6 +3,7 @@ const episodeLanes = require("./src/_data/episodeLanes.js");
 module.exports = function(eleventyConfig) {
   eleventyConfig.addWatchTarget("./src/fang/episodes/");
   eleventyConfig.addWatchTarget("./src/fang/episodes/index.njk");
+  eleventyConfig.addWatchTarget("./src/archive/scenarios/");
   eleventyConfig.addWatchTarget("./src/_includes/");
 
   eleventyConfig.addPassthroughCopy("src/css");
@@ -91,6 +92,17 @@ module.exports = function(eleventyConfig) {
     return collectionApi
       .getFilteredByGlob("src/persons/**/index.njk")
       .filter((item) => item.data.listed !== false);
+  });
+  
+  eleventyConfig.addCollection("scenarios", function(collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/archive/scenario/*/index.njk")
+      .filter((item) => item.data.listed !== false)
+      .sort((a, b) => {
+        const aKey = a.data.timeline?.sort_key || 9999999999;
+        const bKey = b.data.timeline?.sort_key || 9999999999;
+        return Number(aKey) - Number(bKey);
+      });
   });
   
   eleventyConfig.addFilter("scenarioText", function(content) {

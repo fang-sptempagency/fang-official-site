@@ -1,5 +1,5 @@
 ---
-layout: layouts/archive-base.njk
+layout: layouts/archive-dark-base.njk
 ---
 
 <article class="scenario-page">
@@ -91,5 +91,13 @@ layout: layouts/archive-base.njk
   >
     {{ production_date | readableDate }}
   </div>
+  
+  {% if dev_comment %}
+<!--
+
+{{ dev_comment }}
+
+-->
+{% endif %}
 
 </article>

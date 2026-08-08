@@ -1,59 +1,101 @@
 ---
-layout: layouts/archive-base.njk
-title: 時系列
+layout: layouts/archive-dark-base.njk
+title: Scenario
+listed: false
 ---
 
-<article class="timeline-page">
-  <h1>時系列</h1>
+<article class="scenario-index">
+  <header class="scenario-index__header">
+    <h1>時系列</h1>
+    <p>息子 篠原堅の記録。</p>
+  </header>
 
-  <nav class="timeline-filter" aria-label="timeline route filter">
-    <button type="button" data-route-filter="fang">FANG</button>
-    <button type="button" data-route-filter="skin">SKIN</button>
-    <button type="button" data-route-filter="presence">PRESENCE</button>
-    <button type="button" data-route-filter="experiment">EXPERIMENT</button>
-  </nav>
+  <section class="scenario-common-route" aria-labelledby="common-route-title">
+    <header class="route-section-header">
+      <h2 id="common-route-title">生い立ち</h2>
+      <p>
+       同じ孤独を抱えた二人の特殊能力者と絆を結ぶまで。
+      </p>
+    </header>
 
-  <ol class="timeline-list">
-    {% for work in collections.timelineWorks %}
-      {% set routes = work.data.timeline.routes or [work.data.timeline.route or "main"] %}
+  <ol class="scenario-list">
+    {% for scenario in collections.scenarios %}
+      {% if scenario.data.timeline and scenario.data.timeline.route_type == "common" %}
+        <li class="scenario-list-item">
+          <a class="scenario-list-item__link" href="{{ scenario.url }}">
+            <span class="scenario-list-item__phase">
+              {{ scenario.data.timeline.phase }}
+            </span>
 
-      <li
-        class="timeline-item{% if work.data.timeline.status == 'missing' %} timeline-item--missing{% endif %}"
-        data-routes="{{ routes | join(' ') }}"
-      >
-        {% if work.data.timeline.status == "missing" %}
-          <span class="timeline-title timeline-title--missing">
-            {{ work.data.title }}
-          </span>
-        {% else %}
-          <a href="{{ work.url }}">{{ work.data.title }}</a>
-        {% endif %}
+            <span class="scenario-list-item__title">
+              {{ scenario.data.title }}
+            </span>
 
-        <dl>
-          {% set fictionalDate = work.data.timeline | fictionalDateLabel %}
-          {% if fictionalDate %}
-            <dt>作中時間</dt>
-            <dd>{{ fictionalDate }}</dd>
-          {% endif %}
-          
-          {% if work.data.timeline.phase %}
-            <dt>phase</dt>
-            <dd>{{ work.data.timeline.phase }}</dd>
-          {% endif %}
-
-          <dt>routes</dt>
-          <dd>{{ routes | join(", ") }}</dd>
-
-          {% if work.data.timeline.summary %}
-            <dt>summary</dt>
-            <dd>{{ work.data.timeline.summary }}</dd>
-          {% endif %}
-        </dl>
-      </li>
+            {% if scenario.data.timeline.summary %}
+              <span class="scenario-list-item__summary">
+                {{ scenario.data.timeline.summary }}
+              </span>
+            {% endif %}
+          </a>
+        </li>
+      {% endif %}
     {% endfor %}
   </ol>
+  </section>
 
-  <p>
-    <a href="/timeline/map/">条件分岐を含む全体図を見る</a>
-  </p>
+  <section class="scenario-branch-route" aria-labelledby="branch-route-title">
+    <header class="route-section-header">
+      <h2 id="branch-route-title">分岐</h2>
+      <p>
+        条件により変質した篠原堅の運命。
+      </p>
+    </header>
+
+    <nav class="route-filter" aria-label="worldline filter">
+      <button type="button" data-route-filter="fang" aria-pressed="true">FANG</button>
+      <button type="button" data-route-filter="skin">SKIN</button>
+      <button type="button" data-route-filter="presence">PRESENCE</button>
+    </nav>
+
+    <div class="route-description" aria-live="polite">
+      <p data-route-description="fang">
+        戸次信長との別離の末、本田千和と結ばれて自分の人生を取り戻す。
+      </p>
+
+      <p data-route-description="skin" hidden>
+        精神支配能力者の被害を受けた末、人間性を失う。
+      </p>
+
+      <p data-route-description="presence" hidden>
+        精神支配能力者の被害を受けた末、重い病に沈む。
+      </p>
+    </div>
+
+    <ol class="scenario-list">
+    {% for scenario in collections.scenarios %}
+      {% if scenario.data.timeline and scenario.data.timeline.route_type == "branch" %}
+        <li
+          class="scenario-list-item"
+          data-routes="{% if scenario.data.timeline.routes %}{{ scenario.data.timeline.routes | join(' ') }}{% endif %}"
+        >
+          <a class="scenario-list-item__link" href="{{ scenario.url }}">
+            <span class="scenario-list-item__phase">
+              {{ scenario.data.timeline.phase }}
+            </span>
+
+            <span class="scenario-list-item__title">
+              {{ scenario.data.title }}
+            </span>
+
+            {% if scenario.data.timeline.summary %}
+              <span class="scenario-list-item__summary">
+                {{ scenario.data.timeline.summary }}
+              </span>
+            {% endif %}
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+  </section>
 </article>

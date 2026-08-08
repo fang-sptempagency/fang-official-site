@@ -1,6 +1,12 @@
+console.log("🔥 route-filter.js NEW VERSION loaded");
+
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll("[data-route-filter]");
-  const items = document.querySelectorAll("[data-routes]");
+  const items = document.querySelectorAll(".scenario-branch-route [data-routes]");
+
+  console.log("[route-filter] loaded");
+  console.log("[route-filter] buttons:", buttons.length);
+  console.log("[route-filter] items:", items.length);
 
   if (!buttons.length || !items.length) {
     return;
@@ -8,10 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const applyFilter = (route) => {
     items.forEach((item) => {
-      const itemRoutes = item.dataset.routes.split(" ");
-      const shouldShow = route === "all" || itemRoutes.includes(route);
+      const itemRoutes = (item.dataset.routes || "")
+        .split(/\s+/)
+        .filter(Boolean);
 
-      item.hidden = !shouldShow;
+      item.hidden = !itemRoutes.includes(route);
     });
 
     buttons.forEach((button) => {
@@ -19,11 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
       button.setAttribute("aria-pressed", String(isActive));
     });
 
-    if (route === "all") {
-      history.replaceState(null, "", window.location.pathname);
-    } else {
-      history.replaceState(null, "", `#${route}`);
-    }
+    const descriptions = document.querySelectorAll("[data-route-description]");
+
+    descriptions.forEach((description) => {
+      description.hidden = description.dataset.routeDescription !== route;
+    });
+
+    history.replaceState(null, "", `#${route}`);
   };
 
   buttons.forEach((button) => {
@@ -32,11 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const initialRoute = window.location.hash.replace("#", "") || "all";
-  const validRoutes = [
-    "all",
-    ...Array.from(buttons).map((button) => button.dataset.routeFilter)
-  ];
+  const initialRoute = window.location.hash.replace("#", "") || "fang";
+  const validRoutes = Array.from(buttons).map((button) => button.dataset.routeFilter);
 
-  applyFilter(validRoutes.includes(initialRoute) ? initialRoute : "all");
+  applyFilter(validRoutes.includes(initialRoute) ? initialRoute : "fang");
 });
