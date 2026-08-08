@@ -211,12 +211,6 @@ module.exports = {
       side: "real"
     },
     {
-      date: "2004-06-01",
-      title: "佐世保小6女児同級生殺害事件",
-      type: "history",
-      side: "real"
-    },
-    {
       year: 2004,
       title: "葛城堅（10才）が割腹自殺を試みて緊急搬送され、のち児童養護施設に保護される",
       type: "fang",
@@ -225,6 +219,12 @@ module.exports = {
     {
       date: "2005-04-25",
       title: "JR福知山線脱線事故",
+      type: "history",
+      side: "real"
+    },
+    {
+      date: "2007-06-29",
+      title: "初代iPhone発売",
       type: "history",
       side: "real"
     },
