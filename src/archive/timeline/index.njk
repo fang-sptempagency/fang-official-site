@@ -98,4 +98,37 @@ listed: false
     {% endfor %}
   </ol>
   </section>
+
+    <section class="scenario-convergence-route" aria-labelledby="convergence-route-title">
+    <header class="route-section-header">
+      <h2 id="convergence-route-title">収束</h2>
+      <p>
+        どう行動しようと　変わらない結果。
+      </p>
+    </header>
+
+    <ol class="scenario-list">
+      {% for scenario in collections.scenarios %}
+        {% if scenario.data.timeline and scenario.data.timeline.route_type == "convergence" %}
+          <li class="scenario-list-item">
+            <a class="scenario-list-item__link" href="{{ scenario.url }}">
+              <span class="scenario-list-item__phase">
+                {{ scenario.data.timeline.phase }}
+              </span>
+
+              <span class="scenario-list-item__title">
+                {{ scenario.data.title }}
+              </span>
+
+              {% if scenario.data.timeline.summary %}
+                <span class="scenario-list-item__summary">
+                  {{ scenario.data.timeline.summary }}
+                </span>
+              {% endif %}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </section>
 </article>
