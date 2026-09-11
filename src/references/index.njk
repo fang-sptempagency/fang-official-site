@@ -15,7 +15,8 @@ listed: false
     </p>
   </header>
 
-{% set groupedReferences = references | groupReferencesByCategory %}
+{% set visibleReferences = references | publicReferences %}
+{% set groupedReferences = visibleReferences | groupReferencesByCategory %}
 
   <section class="references-sections" aria-label="reference list">
     {% for group in groupedReferences %}
@@ -113,3 +114,43 @@ listed: false
     {% endfor %}
   </section>
 </article>
+
+{% set commentOnlyReferences = references | commentReferences %}
+
+{% if commentOnlyReferences.length %}
+<!--
+
+Hidden References / ソースコードのコメントでしか読めない資料
+
+この項目は、通常の画面表示には出力されません。
+DevToolsまたはページソースを開いた閲覧者だけが読むことができます。
+
+{% for reference in commentOnlyReferences %}
+============================================================
+ID: {{ reference.id }}
+TITLE: {{ reference.title }}
+TYPE: {{ reference.type | referenceTypeLabel }}
+STATUS: {{ reference.status | referenceStatusLabel }}
+{% if reference.year %}YEAR: {{ reference.year }}{% endif %}
+{% if reference.authors %}
+AUTHORS: {% for author in reference.authors %}{{ author }}{% if not loop.last %} / {% endif %}{% endfor %}
+{% endif %}
+{% if reference.publisher %}PUBLISHER: {{ reference.publisher }}{% endif %}
+{% if reference.isbn %}ISBN: {{ reference.isbn }}{% endif %}
+{% if reference.category %}CATEGORY: {{ reference.category }}{% endif %}
+{% if reference.relatedPersons %}
+RELATED PERSONS: {% for person in reference.relatedPersons %}{{ person }}{% if not loop.last %} / {% endif %}{% endfor %}
+{% endif %}
+{% if reference.relatedPhases %}
+RELATED PHASES: {% for phase in reference.relatedPhases %}{{ phase }}{% if not loop.last %} / {% endif %}{% endfor %}
+{% endif %}
+{% if reference.note %}
+NOTE:
+{{ reference.note }}
+{% endif %}
+
+{% endfor %}
+============================================================
+
+-->
+{% endif %}

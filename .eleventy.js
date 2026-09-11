@@ -104,7 +104,7 @@ module.exports = function(eleventyConfig) {
         return Number(aKey) - Number(bKey);
       });
   });
-  
+
   eleventyConfig.addFilter("scenarioText", function(content) {
   if (!content) return content;
 
@@ -290,6 +290,97 @@ module.exports = function(eleventyConfig) {
     return "";
   });
 
+  eleventyConfig.addFilter("groupBy", function(items, key) {
+    if (!Array.isArray(items)) return [];
+
+    const groups = new Map();
+
+    items.forEach((item) => {
+      const groupName = item[key] || "未分類";
+
+      if (!groups.has(groupName)) {
+        groups.set(groupName, []);
+      }
+
+      groups.get(groupName).push(item);
+    });
+
+    return Array.from(groups, ([name, items]) => {
+      return { name, items };
+    });
+  });
+
+  eleventyConfig.addFilter("referenceStatusLabel", function(status) {
+    const labels = {
+      read: "読了",
+      referenced: "部分参照",
+      skimmed: "流し読み",
+      reading: "読書中",
+      "to-read": "参照予定"
+    };
+
+    return labels[status] || status || "未設定";
+  });
+
+  eleventyConfig.addFilter("referenceTypeLabel", function(type) {
+    const labels = {
+      book: "書籍",
+      whitepaper: "白書・公的資料",
+      paper: "論文",
+      article: "記事",
+      website: "Webページ"
+    };
+
+    return labels[type] || type || "資料";
+  });
+
+  const referenceCategories = require("./src/_data/referenceCategories.js");
+
+  eleventyConfig.addFilter("groupReferencesByCategory", function(items) {
+    if (!Array.isArray(items)) return [];
+
+    const groups = new Map();
+
+    items.forEach((item) => {
+      const groupName = item.category || "未分類";
+
+      if (!groups.has(groupName)) {
+        groups.set(groupName, []);
+      }
+
+      groups.get(groupName).push(item);
+    });
+
+    const orderedGroups = referenceCategories
+      .filter((category) => groups.has(category))
+      .map((category) => ({
+        name: category,
+        items: groups.get(category)
+      }));
+
+    const remainingGroups = Array.from(groups, ([name, items]) => ({
+      name,
+      items
+    })).filter((group) => !referenceCategories.includes(group.name));
+
+    return [...orderedGroups, ...remainingGroups];
+  });
+
+  eleventyConfig.addFilter("commentReferences", function(references) {
+    if (!Array.isArray(references)) return [];
+
+    return references.filter((reference) => {
+      return reference.visibility === "comment";
+    });
+  });
+
+  eleventyConfig.addFilter("publicReferences", function(references) {
+    if (!Array.isArray(references)) return [];
+
+    return references.filter((reference) => {
+      return reference.visibility !== "comment" && reference.visibility !== "hidden";
+    });
+  });
   return {
     dir: {
       input: "src",
