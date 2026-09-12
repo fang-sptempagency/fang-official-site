@@ -322,6 +322,7 @@
       .photo-page {
       max-width: 900px;
       margin: 0 auto;
+      text-align: center;
       }
 
       .photo-main {
@@ -1599,7 +1600,7 @@
         text-align: left;
       }
 
-      .episode_meta {
+      .meta_data {
         display: grid;
         gap: 0.5rem;
         width: min(100%, 32rem);
@@ -1609,7 +1610,7 @@
         text-align: left;
       }
 
-      .episode_meta div {
+      .meta_data div {
         display: grid;
         grid-template-columns: 7rem 1fr;
         gap: 1rem;
@@ -1617,11 +1618,11 @@
         padding-top: 0.5rem;
       }
 
-      .episode_meta dt {
+      .meta_data dt {
         opacity: 0.65;
       }
 
-      .episode_meta dd {
+      .meta_data dd {
         margin: 0;
       }
 

@@ -7,12 +7,36 @@ title: FANG
   <figure class="photo-main">
     <img src="{{ image }}" alt="{{ title }}">
     <figcaption>
-      Title：{{ title }}<br>
-      Phase：{{ phase }}<br>
-      {% if viewpoint !== "ND" %}
-        Viewpoint：{{ viewpoint }}<br>
+      <dl class="meta_data">
+      {% if title %}
+        <div>
+          <dt>Title</dt>
+          <dd>{{ title }}</dd>
+        </div>
       {% endif %}
-      Production date：{{ production_date | readableDate }}
+      
+      {% if phase %}
+        <div>
+          <dt>Phase</dt>
+          <dd>{{ phase }}</dd>
+        </div>
+      {% endif %}
+
+      {% if viewpoint %}
+        <div>
+          <dt>Viewpoint</dt>
+          <dd>{{ viewpoint }}</dd>
+        </div>
+      {% endif %}
+
+      {% if production_date %}
+        <div>
+          <dt>Production date</dt>
+          <dd>{{ production_date | readableDate }}</dd>
+        </div>
+      {% endif %}
+    </dl>
     </figcaption>
   </figure>
+  <a href="/photos/">一覧に戻る</a>
 </article>
