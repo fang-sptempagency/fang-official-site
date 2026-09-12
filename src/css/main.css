@@ -324,7 +324,7 @@
       margin: 0 auto;
       text-align: center;
       }
-
+      
       .photo-main {
       margin: 2rem 0;
       }
@@ -341,7 +341,7 @@
       font-size: 14px;
       margin: 2rem 0;
       }
-      
+
       .content-gate {
       position: fixed;
       inset: 0;
@@ -2093,3 +2093,147 @@
     .site-footer small {
       display: block;
     }
+
+
+/* ========================================
+   UNIVERSE
+======================================== */
+
+.universe-page {
+  width: min(100%, 900px);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 7rem) 1.25rem;
+}
+
+.universe-document {
+  width: min(100%, 760px);
+  margin: 0 auto;
+  counter-reset: universe-chapter;
+}
+
+
+/* ========================================
+   # 見出し
+   ページ内の主要章
+======================================== */
+
+.universe-document > h1 {
+  position: relative;
+
+  margin:
+    clamp(7rem, 14vw, 11rem)
+    0
+    clamp(2.5rem, 6vw, 4rem);
+
+  padding-bottom: 1.25rem;
+
+  border-bottom: 1px solid currentColor;
+
+  font-size: clamp(2.4rem, 8vw, 3rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.1em;
+
+  counter-increment: universe-chapter;
+}
+
+.universe-document > h1:first-child {
+  margin-top: 0;
+}
+
+.universe-document > h1::before {
+  content: "0" counter(universe-chapter);
+
+  display: block;
+  margin-bottom: 0.8rem;
+
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1;
+  letter-spacing: 0.18em;
+
+  opacity: 0.5;
+}
+
+
+/* ========================================
+   ## 見出し
+   章内の項目
+======================================== */
+
+.universe-document > h2 {
+  margin:
+    clamp(3.5rem, 8vw, 5rem)
+    0
+    1.25rem;
+
+  padding-bottom: 0.55rem;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+
+  font-size: clamp(1.2rem, 4vw, 1.65rem);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+}
+
+
+/* ========================================
+   本文
+======================================== */
+
+.universe-document > p {
+  margin: 1rem 0;
+  line-height: 2.1;
+}
+
+
+/* ========================================
+   箇条書き
+======================================== */
+
+.universe-document > ul {
+  margin: 2rem 0 2.5rem;
+  padding: 0;
+
+  list-style: none;
+
+  border-top: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.universe-document > ul li {
+  position: relative;
+
+  margin: 0;
+  padding: 1rem 1rem 1rem 2.5rem;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+
+  line-height: 1.9;
+}
+
+.universe-document > ul li::before {
+  content: "—";
+
+  position: absolute;
+  left: 0.8rem;
+
+  opacity: 0.5;
+}
+
+
+/* ========================================
+   dark theme
+======================================== */
+
+body.archive-dark .universe-document > h2 {
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+body.archive-dark .universe-document > ul {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+body.archive-dark .universe-document > ul li {
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
