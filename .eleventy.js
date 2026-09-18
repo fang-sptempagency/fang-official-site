@@ -1,19 +1,20 @@
 const episodeLanes = require("./src/_data/episodeLanes.js");
 
 module.exports = function(eleventyConfig) {
-  eleventyConfig.addWatchTarget("./src/fang/episodes/");
-  eleventyConfig.addWatchTarget("./src/fang/episodes/index.njk");
-  eleventyConfig.addWatchTarget("./src/archive/scenarios/");
+  eleventyConfig.addWatchTarget("./src/episodes/");
+  eleventyConfig.addWatchTarget("./src/episodes/index.njk");
+  eleventyConfig.addWatchTarget("./src/scenarios/");
   eleventyConfig.addWatchTarget("./src/_includes/");
 
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/assets");
 
-  eleventyConfig.addPassthroughCopy("src/fang/photos/**/*.webp");
-  eleventyConfig.addPassthroughCopy("src/fang/episodes/**/*.webp");
+  eleventyConfig.addPassthroughCopy("src/photos/**/*.webp");
+  eleventyConfig.addPassthroughCopy("src/episodes/**/*.webp");
   eleventyConfig.addPassthroughCopy("src/records/**/*.webp");
   eleventyConfig.addPassthroughCopy("src/archives/**/*.webp");
+  eleventyConfig.addPassthroughCopy("src/universe/**");
 
   eleventyConfig.addFilter("readableDate", function(dateObj) {
     var y = dateObj.getFullYear();
@@ -67,7 +68,7 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addCollection("episodes", function(collectionApi) {
     return collectionApi
-      .getFilteredByGlob("src/fang/episodes/*/index.njk")
+      .getFilteredByGlob("src/episodes/*/index.njk")
       .filter((item) => item.data.listed !== false)
       .sort((a, b) => {
         const aKey = a.data.timeline?.sort_key || 9999999999;
@@ -96,7 +97,7 @@ module.exports = function(eleventyConfig) {
   
   eleventyConfig.addCollection("scenarios", function(collectionApi) {
     return collectionApi
-      .getFilteredByGlob("src/archive/scenario/*/index.njk")
+      .getFilteredByGlob("src/scenario/*/index.njk")
       .filter((item) => item.data.listed !== false)
       .sort((a, b) => {
         const aKey = a.data.timeline?.sort_key || 9999999999;
@@ -140,32 +141,12 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addCollection("photos", function(collectionApi) {
     return collectionApi
-      .getFilteredByGlob("src/fang/photos/*/index.njk")
+      .getFilteredByGlob("src/photos/*/index.njk")
       .filter((item) => item.data.listed !== false)
       .sort((a, b) => {
         const aDate = a.data.production_date || new Date(0);
         const bDate = b.data.production_date || new Date(0);
         return bDate - aDate;
-      });
-  });
-
-  eleventyConfig.addCollection("historyTimelineEvents", function() {
-    const timeline = require("./src/_data/historyTimeline.js");
-
-    const sortKey = (event) => {
-      if (event.date) {
-        return Number(event.date.replaceAll("-", ""));
-      }
-
-      const year = Number(event.year || 0);
-      const month = Number(event.month || 1);
-      const day = Number(event.day || 1);
-
-      return year * 10000 + month * 100 + day;
-    };
-
-    return timeline.events.slice().sort((a, b) => {
-      return sortKey(a) - sortKey(b);
     });
   });
 
