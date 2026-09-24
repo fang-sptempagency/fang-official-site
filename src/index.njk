@@ -32,7 +32,12 @@
           alt="FANG"
         >
       </h1>
-
+      
+      <div class="portal-hero__tagline">
+      <p>昭和、平成、令和</p>
+      <p>東京都</p>
+      <p>特殊能力が在る社会にて。</p>
+      </div>
     </div>
 
   </section>
@@ -116,6 +121,39 @@
         </a>
       </nav>
     </section>
+    {% set latest = changelog | latestChangelog %}
+
+    {% if latest %}
+      <section
+        class="portal-update"
+        aria-labelledby="portal-update-title"
+      >
+        <div class="portal-update__header">
+          <p id="portal-update-title" class="portal-update__label">
+            LAST UPDATED
+          </p>
+
+          <time
+            class="portal-update__date"
+            datetime="{{ latest.date }}"
+          >
+            {{ latest.date | dotDate }}
+          </time>
+        </div>
+
+        <ul class="portal-update__changes">
+          {% for change in latest.changes %}
+            <li>{{ change }}</li>
+          {% endfor %}
+        </ul>
+
+        <p class="portal-update__more">
+          <a href="/changelog/">
+            更新履歴を見る
+          </a>
+        </p>
+      </section>
+    {% endif %}
   </article>
 
   <footer class="site-footer">

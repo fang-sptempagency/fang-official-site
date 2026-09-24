@@ -2237,3 +2237,320 @@ body.archive-dark .universe-document > ul {
 body.archive-dark .universe-document > ul li {
   border-bottom-color: rgba(255, 255, 255, 0.2);
 }
+
+/* ========================================
+   CHANGELOG
+======================================== */
+
+.changelog-page {
+  width: min(100%, 760px);
+  margin: 0 auto;
+
+  padding:
+    clamp(4rem, 10vw, 8rem)
+    1.25rem
+    clamp(6rem, 14vw, 10rem);
+}
+
+
+/* ---------- header ---------- */
+
+.changelog-header {
+  margin-bottom:
+    clamp(5rem, 12vw, 8rem);
+}
+
+.changelog-header__label {
+  margin:
+    0
+    0
+    0.75rem;
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    0.7rem;
+
+  letter-spacing:
+    0.2em;
+
+  opacity:
+    0.55;
+}
+
+.changelog-header h1 {
+  margin:
+    0;
+
+  font-size:
+    clamp(2.5rem, 8vw, 4.5rem);
+
+  font-weight:
+    400;
+
+  line-height:
+    1.3;
+
+  letter-spacing:
+    0.12em;
+}
+
+.changelog-header__description {
+  margin:
+    1.5rem
+    0
+    0;
+
+  line-height:
+    1.9;
+
+  opacity:
+    0.75;
+}
+
+
+/* ========================================
+   LIST
+======================================== */
+
+.changelog-list {
+  list-style:
+    none;
+
+  margin:
+    0;
+
+  padding:
+    0;
+}
+
+
+/* ---------- entry ---------- */
+
+.changelog-entry {
+  display:
+    grid;
+
+  grid-template-columns:
+    9rem
+    minmax(0, 1fr);
+
+  gap:
+    clamp(1.5rem, 5vw, 3.5rem);
+
+  padding:
+    2rem
+    0;
+
+  border-top:
+    1px solid
+    rgba(0, 0, 0, 0.25);
+}
+
+.changelog-entry:last-child {
+  border-bottom:
+    1px solid
+    rgba(0, 0, 0, 0.25);
+}
+
+
+/* ---------- date ---------- */
+
+.changelog-entry__date {
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    0.8rem;
+
+  letter-spacing:
+    0.1em;
+
+  white-space:
+    nowrap;
+}
+
+
+/* ---------- changes ---------- */
+
+.changelog-entry__changes {
+  list-style:
+    none;
+
+  margin:
+    0;
+
+  padding:
+    0;
+}
+
+.changelog-entry__changes li {
+  position:
+    relative;
+
+  padding-left:
+    1.5rem;
+
+  line-height:
+    1.9;
+}
+
+.changelog-entry__changes li
++ li {
+  margin-top:
+    0.5rem;
+}
+
+.changelog-entry__changes li::before {
+  content:
+    "—";
+
+  position:
+    absolute;
+
+  left:
+    0;
+
+  opacity:
+    0.5;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+  .changelog-entry {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      1rem;
+  }
+
+}
+
+/* ========================================
+   PORTAL UPDATE
+======================================== */
+
+.portal-update {
+  width: min(100% - 2.5rem, 1120px);
+
+  margin:
+    clamp(5rem, 12vw, 9rem)
+    auto
+    2rem;
+
+  padding-top: 1.25rem;
+
+  border-top:
+    1px solid
+    rgba(0, 0, 0, 0.2);
+}
+
+
+/* ---------- header ---------- */
+
+.portal-update__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+
+  gap:
+    0.5rem
+    1.25rem;
+
+  margin-bottom: 1rem;
+}
+
+.portal-update__label {
+  margin: 0;
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    0.7rem;
+
+  letter-spacing:
+    0.14em;
+
+  opacity:
+    0.55;
+}
+
+.portal-update__date {
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    0.8rem;
+
+  letter-spacing:
+    0.08em;
+}
+
+
+/* ---------- changes ---------- */
+
+.portal-update__changes {
+  list-style: none;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+.portal-update__changes li {
+  position: relative;
+
+  padding-left: 1.4rem;
+
+  font-size: 0.85rem;
+
+  line-height: 1.8;
+}
+
+.portal-update__changes li + li {
+  margin-top: 0.25rem;
+}
+
+.portal-update__changes li::before {
+  content: "—";
+
+  position: absolute;
+  left: 0;
+
+  opacity: 0.5;
+}
+
+
+/* ---------- more ---------- */
+
+.portal-update__more {
+  margin:
+    1.25rem
+    0
+    0;
+
+  font-size:
+    0.8rem;
+}
+
+.portal-update__more a {
+  color: inherit;
+
+  text-decoration: none;
+
+  border-bottom:
+    1px solid
+    currentColor;
+}
+
+.portal-update__more a:hover {
+  opacity: 0.6;
+}

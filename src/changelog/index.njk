@@ -1,0 +1,54 @@
+---
+layout: layouts/base.njk
+title: 更新履歴
+permalink: /changelog/
+body_class: changelog-body
+---
+
+<article class="changelog-page">
+
+  <header class="changelog-header">
+
+    <p class="changelog-header__label">
+      CHANGELOG
+    </p>
+
+    <h1>更新履歴</h1>
+
+    <p class="changelog-header__description">
+      Fang.公式サイトの主な変更記録。
+    </p>
+
+  </header>
+
+
+ {% set entries = changelog | sortChangelog %}
+
+<ol class="changelog-list">
+
+  {% for entry in entries %}
+
+    <li class="changelog-entry">
+
+      <time
+        class="changelog-entry__date"
+        datetime="{{ entry.date }}"
+      >
+        {{ entry.date | dotDate }}
+      </time>
+
+      <ul class="changelog-entry__changes">
+
+        {% for change in entry.changes %}
+          <li>{{ change }}</li>
+        {% endfor %}
+
+      </ul>
+
+    </li>
+
+  {% endfor %}
+
+</ol>
+
+</article>

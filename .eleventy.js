@@ -362,6 +362,32 @@ module.exports = function(eleventyConfig) {
       return reference.visibility !== "comment" && reference.visibility !== "hidden";
     });
   });
+
+
+  /*
+   * 最新の更新履歴を1件取得
+   */
+  eleventyConfig.addFilter("latestChangelog", (entries = []) => {
+    if (!Array.isArray(entries) || entries.length === 0) {
+      return null;
+    }
+
+    return [...entries].sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    })[0];
+  });
+
+
+  /*
+   * YYYY-MM-DD → YYYY.MM.DD
+   *
+   * displayDate をデータ側に持たせたくない場合に使う
+   */
+  eleventyConfig.addFilter("dotDate", (value) => {
+    if (!value) return "";
+
+    return String(value).replaceAll("-", ".");
+  });
   return {
     dir: {
       input: "src",
